@@ -7,7 +7,6 @@ data "archive_file" "zip" {
 resource "aws_lambda_function" "lambda_function" {
   filename         = data.archive_file.zip.output_path
   source_code_hash = data.archive_file.zip.output_base64sha256
-  #source_code_hash = filebase64sha256(data.archive_file.zip.output_path)
 
   function_name = var.project_name
   role          = aws_iam_role.lambda_role.arn
@@ -23,6 +22,16 @@ resource "aws_lambda_function" "lambda_function" {
   }
 }
 
+resource "aws_lambda_permission" "lambda_permission" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.lambda_function.function_name
+  principal     = "apigateway.amazonaws.com"
+
+  source_arn = "${aws_api_gateway_rest_api.api_gateway.execution_arn}/*/*"
+}
+
+
 #resource "aws_lambda_alias" "alias_dev" {
 #  name             = "dev"
 #  description      = "dev"
@@ -36,17 +45,6 @@ resource "aws_lambda_function" "lambda_function" {
 #  function_name    = aws_lambda_function.lambda_function.arn
 #  function_version = "$LATEST"
 #}
-
-resource "aws_lambda_permission" "lambda_permission" {
-  statement_id  = "AllowAPIGatewayInvoke"
-  action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.lambda_function.function_name
-  principal     = "apigateway.amazonaws.com"
-
-  # The "/*/*" portion grants access from any method on any resource
-  # within the API Gateway REST API.
-  source_arn = "${aws_api_gateway_rest_api.api_gateway.execution_arn}/*/*"
-}
 
 #resource "aws_lambda_permission" "permission_dev" {
 #  statement_id  = "AllowAPIGatewayInvoke"
@@ -69,12 +67,3 @@ resource "aws_lambda_permission" "lambda_permission" {
 #  # within the API Gateway REST API.
 #  source_arn = "${aws_api_gateway_rest_api.api_gateway.execution_arn}/*/GET/athletes"
 #}
-
-resource "aws_api_gateway_rest_api" "api_gateway" {
-  name        = "${var.project_name}-API"
-  description = "${var.project_desc} API"
-}
-
-resource "aws_cloudwatch_log_group" "convert_log_group" {
-  name = "/aws/lambda/${aws_lambda_function.lambda_function.function_name}"
-}
