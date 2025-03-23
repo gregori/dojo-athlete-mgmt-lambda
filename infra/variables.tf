@@ -11,5 +11,5 @@ variable "region" {
 }
 
 variable "profile" {
-  default = "default"
+  default = "aikido"
 }
