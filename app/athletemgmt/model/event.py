@@ -4,18 +4,19 @@ from typing import Optional
 from pydantic import BaseModel, Field
 from pydantic.v1 import validator, root_validator
 
+from athletemgmt.model.resource import Resource
+
 
 class PathParameters(BaseModel):
     id: Optional[str]
 
 
 class Event(BaseModel):
-    resource: str
-    path: str
+    resource: Resource
     http_method: http.HTTPMethod = Field(alias="httpMethod")
     headers: dict
     query_parameters: Optional[dict] = Field(alias="queryStringParameters")
-    path_parameters: PathParameters = Field(alias="pathParameters")
+    path_parameters: Optional[PathParameters] = Field(alias="pathParameters")
     body: Optional[str]
 
     @validator("http_method")
