@@ -12,6 +12,9 @@ class DbService:
         self._conn = duckdb.connect()
         self._init_duckdb()
 
+    def __del__(self):
+        self.close_connection()
+
     def _init_duckdb(self):
         self._conn.execute("INSTALL httpfs; LOAD httpfs;")
         self._conn.execute(f"SET s3_region='{self._app_cfg.aws_region}';")
@@ -37,3 +40,12 @@ class DbService:
 
     def execute_query(self, query: str, params: tuple = ()):
         return self._conn.execute(query, params)
+
+    def close_connection(self):
+        self._conn.execute(
+            f"""
+            COPY athletes TO '{self._app_cfg.s3_file_path}' 
+            (FORMAT CSV, HEADER TRUE)
+        """
+        )
+        self._conn.close()

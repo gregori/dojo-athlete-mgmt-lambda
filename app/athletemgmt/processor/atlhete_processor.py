@@ -39,23 +39,23 @@ class AthleteProcessor:
     def _list_athletes(self, event: Event):
         athletes = self._athlete_service.list_athletes()
         athlete_list = {
-            "athletes": [athlete.model_dump_json() for athlete in athletes]
+            "athletes": [athlete.model_dump() for athlete in athletes]
         }
         return Response(
             status_code=200,
-            body=json.dumps(athlete_list, ensure_ascii=False),
+            body=json.dumps(athlete_list, ensure_ascii=False, default=str),
         )
 
     def _get_athlete_by_id(self, event: Event):
         athlete_id = event.path_parameters.id
         athlete = self._athlete_service.get_athlete_by_id(int(athlete_id))
-        return Response(status_code=200, body=athlete.json())
+        return Response(status_code=200, body=athlete.model_dump_json())
 
     def _post_athlete(self, event: Event):
-        athlete = Athlete.model_validate(event.body)
+        athlete = Athlete.model_validate_json(event.body)
         athlete = self._athlete_service.create_athlete(athlete)
 
-        return Response(status_code=201, body=athlete.json())
+        return Response(status_code=201, body=athlete.model_dump_json())
 
     def _put_athlete(self, event: Event):
         athlete_id = event.path_parameters.get("id")
@@ -66,10 +66,10 @@ class AthleteProcessor:
                 f"Atleta com id {athlete_id} não encontrado."
             )
 
-        updates = Athlete.model_validate(event.body)
+        updates = Athlete.model_validate_json(event.body)
         athlete = self._athlete_service.update_athlete(updates)
 
-        return Response(status_code=200, body=athlete.json())
+        return Response(status_code=200, body=athlete.model_dump_json())
 
     def _delete_athlete(self, event: Event):
         athlete_id = event.path_parameters.get("id")
