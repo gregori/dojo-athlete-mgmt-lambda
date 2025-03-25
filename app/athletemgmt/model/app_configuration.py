@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic_settings import BaseSettings
 
 
@@ -7,8 +9,9 @@ class AppConfiguration(BaseSettings):
     s3_bucket: str
     s3_path: str
     aws_region: str
-    aws_access_key_id: str
-    aws_secret_access_key: str
+    aws_access_key_id: Optional[str] = None
+    aws_secret_access_key: Optional[str] = None
+    aws_endpoint: Optional[str] = None
 
     @property
     def s3_file_path(self) -> str:

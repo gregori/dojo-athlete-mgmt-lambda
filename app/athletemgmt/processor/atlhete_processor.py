@@ -7,9 +7,7 @@ from athletemgmt.model.athlete import Athlete
 from athletemgmt.model.event import Event
 from athletemgmt.model.resource import Resource
 from athletemgmt.model.response import Response
-from athletemgmt.repository.athlete_repository import AthleteRepository
 from athletemgmt.service.athlete_service import AthleteService
-from athletemgmt.service.db_service import DbService
 
 
 class AthleteNotFoundError(Exception):
@@ -18,11 +16,9 @@ class AthleteNotFoundError(Exception):
 
 class AthleteProcessor:
     def __init__(self, cfg: AppConfiguration):
-        self._cfg = cfg
-        db_service = DbService(self._cfg)
-        athlete_repository = AthleteRepository(db_service.session)
-        self._athlete_service = AthleteService(athlete_repository)
+        self._athlete_service = AthleteService(cfg)
 
+        # Tipagem explícita para o _strategy
         self._strategy: Dict[HTTPMethod, Callable[[Event], Response]] = {
             HTTPMethod.GET: self._get_athlete,
             HTTPMethod.POST: self._post_athlete,
@@ -42,7 +38,9 @@ class AthleteProcessor:
 
     def _list_athletes(self, event: Event):
         athletes = self._athlete_service.list_athletes()
-        athlete_list = {"athletes": [athlete.json() for athlete in athletes]}
+        athlete_list = {
+            "athletes": [athlete.model_dump_json() for athlete in athletes]
+        }
         return Response(
             status_code=200,
             body=json.dumps(athlete_list, ensure_ascii=False),
@@ -51,13 +49,13 @@ class AthleteProcessor:
     def _get_athlete_by_id(self, event: Event):
         athlete_id = event.path_parameters.id
         athlete = self._athlete_service.get_athlete_by_id(int(athlete_id))
-        return Response(status_code=200, body=athlete.json(ensure_ascii=False))
+        return Response(status_code=200, body=athlete.json())
 
     def _post_athlete(self, event: Event):
-        athlete = Athlete.parse_raw(event.body)
+        athlete = Athlete.model_validate(event.body)
         athlete = self._athlete_service.create_athlete(athlete)
 
-        return Response(status_code=201, body=athlete.json(ensure_ascii=False))
+        return Response(status_code=201, body=athlete.json())
 
     def _put_athlete(self, event: Event):
         athlete_id = event.path_parameters.get("id")
@@ -68,10 +66,10 @@ class AthleteProcessor:
                 f"Atleta com id {athlete_id} não encontrado."
             )
 
-        updates = Athlete.parse_raw(event.body)
+        updates = Athlete.model_validate(event.body)
         athlete = self._athlete_service.update_athlete(updates)
 
-        return Response(status_code=200, body=athlete.json(ensure_ascii=False))
+        return Response(status_code=200, body=athlete.json())
 
     def _delete_athlete(self, event: Event):
         athlete_id = event.path_parameters.get("id")

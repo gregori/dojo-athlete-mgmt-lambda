@@ -1,6 +1,5 @@
 import duckdb
-from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.orm import declarative_base
 
 from athletemgmt.model.app_configuration import AppConfiguration
 
@@ -10,33 +9,31 @@ Base = declarative_base()
 class DbService:
     def __init__(self, app_cfg: AppConfiguration):
         self._app_cfg = app_cfg
+        self._conn = duckdb.connect()
         self._init_duckdb()
-        self._engine = self._create_engine()
 
     def _init_duckdb(self):
-        duckdb.sql("INSTALL httpfs; LOAD httpfs;")
-        duckdb.sql(f"SET s3_region='{self._app_cfg.aws_region}';")
-        duckdb.sql(
-            f"SET s3_access_key_id='{self._app_cfg.aws_access_key_id}';"
-        )
-        duckdb.sql(
-            f"SET s3_secret_access_key="
-            f"'{self._app_cfg.aws_secret_access_key}';"
-        )
+        self._conn.execute("INSTALL httpfs; LOAD httpfs;")
+        self._conn.execute(f"SET s3_region='{self._app_cfg.aws_region}';")
 
-        duckdb.sql(
-            f"CREATE TABLE athletes AS SELECT * "
+        if self._app_cfg.aws_endpoint is not None:
+            self._conn.execute(
+                f"SET s3_access_key_id='{self._app_cfg.aws_access_key_id}';"
+            )
+            self._conn.execute(
+                f"SET s3_secret_access_key="
+                f"'{self._app_cfg.aws_secret_access_key}';"
+            )
+            self._conn.execute("SET s3_url_style='path';")
+            self._conn.execute("SET s3_use_ssl=false;")
+            self._conn.execute(
+                f"SET s3_endpoint='{self._app_cfg.aws_endpoint}';"
+            )
+
+        self._conn.execute(
+            f"CREATE TABLE IF NOT EXISTS athletes AS SELECT * "
             f"FROM read_csv_auto('{self._app_cfg.s3_file_path}');"
         )
 
-    @staticmethod
-    def _create_engine():
-        engine = create_engine("duckdb:///athletemgmt.db")
-        Base.metadata.create_all(engine)
-
-        return engine
-
-    @property
-    def session(self):
-        session = sessionmaker(bind=self._engine)
-        return session()
+    def execute_query(self, query: str, params: tuple = ()):
+        return self._conn.execute(query, params)

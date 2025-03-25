@@ -1,10 +1,11 @@
+from athletemgmt.model.app_configuration import AppConfiguration
 from athletemgmt.model.athlete import Athlete
 from athletemgmt.repository.athlete_repository import AthleteRepository
 
 
 class AthleteService:
-    def __init__(self, repository: AthleteRepository):
-        self.repository = repository
+    def __init__(self, cfg: AppConfiguration):
+        self.repository = AthleteRepository(cfg)
 
     def create_athlete(self, athlete: Athlete) -> Athlete:
         return self.repository.create(athlete)

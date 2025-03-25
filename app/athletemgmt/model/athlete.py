@@ -1,16 +1,13 @@
-from sqlalchemy import Column, Integer, String, Date
+from datetime import date
 
-from athletemgmt.service.db_service import Base
+from pydantic import BaseModel, Field
 
 
-class Athlete(Base):
-    __tablename__ = "athletes"
-
-    id = Column(Integer, primary_key=True, autoincrement=False)
-    name = Column(String, nullable=False)
-    address = Column(String, nullable=False)
-    phone = Column(String, nullable=False)
-    date_of_birth = Column(Date, nullable=False)
-
-    def __repr__(self):
-        return f"<Athlete(id={self.id}, name={self.name}, date_of_birth={self.date_of_birth})>"
+class Athlete(BaseModel):
+    id: int = Field(..., description="Identificador único do atleta")
+    name: str = Field(..., description="Nome completo do atleta")
+    address: str = Field(..., description="Endereço do atleta")
+    phone: str = Field(..., description="Telefone de contato")
+    date_of_birth: date = Field(
+        ..., description="Data de nascimento do atleta"
+    )
