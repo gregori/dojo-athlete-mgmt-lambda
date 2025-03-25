@@ -2,10 +2,10 @@ import json
 from http import HTTPMethod
 from typing import Callable, Dict
 
-from athletemgmt.model.resource import Resource
 from athletemgmt.model.app_configuration import AppConfiguration
 from athletemgmt.model.athlete import Athlete
 from athletemgmt.model.event import Event
+from athletemgmt.model.resource import Resource
 from athletemgmt.model.response import Response
 from athletemgmt.repository.athlete_repository import AthleteRepository
 from athletemgmt.service.athlete_service import AthleteService
@@ -42,9 +42,7 @@ class AthleteProcessor:
 
     def _list_athletes(self, event: Event):
         athletes = self._athlete_service.list_athletes()
-        athlete_list = {
-            "athletes": [athlete.json() for athlete in athletes]
-        }
+        athlete_list = {"athletes": [athlete.json() for athlete in athletes]}
         return Response(
             status_code=200,
             body=json.dumps(athlete_list, ensure_ascii=False),
