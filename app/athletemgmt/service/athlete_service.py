@@ -17,7 +17,7 @@ class AthleteService:
         return self.repository.find_all()
 
     def update_athlete(self, athlete: Athlete) -> Athlete:
-        return self.repository.update(athlete)
+        return self.repository.update(athlete.id, athlete.model_dump())
 
     def delete_athlete(self, athlete_id: int) -> None:
         self.repository.delete(athlete_id)
