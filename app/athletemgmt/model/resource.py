@@ -1,6 +1,6 @@
-from enum import Enum
+from dojocommons.model.base_resource import BaseResource
 
 
-class Resource(Enum):
+class Resource(BaseResource):
     ATHLETES = "/athletes"
     ATHLETES_ID = "/athletes/{id}"
