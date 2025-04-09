@@ -16,13 +16,13 @@ variable "env" {
 }
 
 module "lambda" {
-  source = "git::https://github.com/DojoManagement/dojo-tf-modules.git//dojo-lambda?ref=dojo-lambda-0.0.1"
+  source = "git::https://github.com/DojoManagement/dojo-tf-modules.git//dojo-lambda?ref=fix-dojo-lambda"
 
   lambda_name     = "dojo-athlete-mgmt" #####
   source_file     = "../app/lambda_function" #without extension
   handler         = "lambda_function.lambda_handler"
   runtime_version = "python3.12"
-  access_s3       = bool
+  access_s3       = true
   env             = var.env
   
   routes = [
