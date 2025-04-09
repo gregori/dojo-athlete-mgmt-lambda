@@ -20,7 +20,7 @@ variable "env" {
 }
 
 module "lambda" {
-  source = "git::git@github.com:DojoManagement/dojo-ft-modules.git//dojo-lambda?ref=dojo-lambda-0.0.1"
+  source = "git::https://github.com/DojoManagement/dojo-tf-modules.git//dojo-lambda?ref=dojo-lambda-0.0.1"
 
   lambda_name     = local.lambda_name
   source_file     = "../app/lambda_function" #without extension
