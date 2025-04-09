@@ -5,6 +5,10 @@ on:
     branches:
       - develop
 
+defaults:
+  run:
+    working-directory: infra
+
 env:
   TF_VAR_env: "stg"          
      
