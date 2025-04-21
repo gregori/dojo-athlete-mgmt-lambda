@@ -3,4 +3,5 @@ isort
 flake8
 robotframework~=7.2.2
 robotframework-requests~=1.0a14
+jupyterlab~=4.4.0
 -r requirements.txt
