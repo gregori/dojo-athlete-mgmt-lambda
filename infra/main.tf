@@ -14,7 +14,7 @@ module "lambda" {
   source = "git::https://github.com/DojoManagement/dojo-tf-modules.git//dojo-lambda?ref=dojo-lambda-0.0.2"
 
   lambda_name     = "dojo-athlete-mgmt" #####
-  source_dir      = "../app"
+  source_dir      = "../lambda_build"
   handler         = "lambda_function.lambda_handler"
   runtime_version = "python3.12"
   access_s3       = true
