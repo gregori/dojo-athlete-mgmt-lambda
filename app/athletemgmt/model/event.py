@@ -1,14 +1,7 @@
-import http
-from typing import Optional
+from dojocommons.model.base_event import BaseEvent
 
-from pydantic import BaseModel, Field
+from athletemgmt.model.resource import Resource
 
 
-class Event(BaseModel):
-    resource: str
-    path: str
-    http_method: http.HTTPMethod = Field(alias="httpMethod")
-    headers: dict
-    query_parameters: dict = Field(alias="queryStringParameters")
-    path_parameters: dict = Field(alias="pathParameters")
-    body: Optional[str]
+class Event(BaseEvent):
+    resource: Resource
