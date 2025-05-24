@@ -27,12 +27,24 @@ module "lambda" {
   
   routes = [
     {
-      method    = "GET"
-      path_part = "path1"
+      method    = "POST"
+      path_part = "register"
     },
     {
       method    = "POST"
-      path_part = "path2"
+      path_part = "update-profile"
+    },
+    {
+      method    = "POST"
+      path_part = "enroll"
+    },
+    {
+      method    = "POST"
+      path_part = "payment"
+    },
+    {
+      method    = "POST"
+      path_part = "checkin"
     }
   ]
 }
