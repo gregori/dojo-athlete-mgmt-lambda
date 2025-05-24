@@ -18,7 +18,10 @@ echo "📦 Instalando dependências do requirements.txt..."
 pip install -r "$REQUIREMENTS_FILE" -t "$BUILD_DIR"
 
 echo "📄 Copiando arquivos da aplicação para o diretório de build..."
-cp -r "$SOURCE_DIR" "$BUILD_DIR/"
+cp -r "$SOURCE_DIR"/* "$BUILD_DIR/"
+
+echo "📁 listando arquivos do $BUILD_DIR"
+ls -l "$BUILD_DIR"
 
 echo "✅ Build completo: $BUILD_DIR está pronto para uso no Terraform"
 
@@ -26,7 +29,6 @@ echo "✅ Build completo: $BUILD_DIR está pronto para uso no Terraform"
 #if [ -d "$SOURCE_DIR/athletemgmt" ]; then
 #  cp -r "$SOURCE_DIR/dojocommons" "$BUILD_DIR/"
 #fi
-
 
 #echo "🗜️ Criando o pacote .zip: $ZIP_FILE"
 #cd "$BUILD_DIR"
