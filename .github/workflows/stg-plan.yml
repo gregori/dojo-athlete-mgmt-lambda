@@ -5,9 +5,9 @@ on:
     branches:
       - develop
 
-defaults:
-  run:
-    working-directory: infra
+#defaults:
+#  run:
+#    working-directory: infra
 
 env:
   TF_VAR_env: "stg"          
@@ -50,9 +50,12 @@ jobs:
       id: fmt
       run: terraform fmt -check
       continue-on-error: true
+      working-directory: infra
 
     - name: Terraform Init
       run: terraform init
+      working-directory: infra
 
     - name: Terraform PLAN
       run: terraform plan
+      working-directory: infra
