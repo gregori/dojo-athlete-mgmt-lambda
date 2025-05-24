@@ -10,11 +10,6 @@ terraform {
   }
 }
 
-variable "env" {
-  default = ""
-  type    = string
-}
-
 module "lambda" {
   source = "git::https://github.com/DojoManagement/dojo-tf-modules.git//dojo-lambda?ref=dojo-lambda-0.0.2"
 
@@ -23,7 +18,7 @@ module "lambda" {
   handler         = "lambda_function.lambda_handler"
   runtime_version = "python3.12"
   access_s3       = true
-  env             = var.env
+  env             = "stg"
   
   routes = [
     {
@@ -47,4 +42,8 @@ module "lambda" {
       path_part = "checkin"
     }
   ]
+}
+
+module "apigw_deployment" {
+  source = "git::https://github.com/DojoManagement/dojo-tf-modules.git//dojo-apigw-deployment?ref=dojo-apigw-deployment-0.0.1"
 }
