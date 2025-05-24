@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    ports:
+      - "4566:4566"  # Porta principal para todos os serviços do LocalStack
+      - "4572:4572"  # Porta específica para o S3 (opcional)
+    environment:
+      - DEBUG=1  # Logs detalhados para depuração
+      - LAMBDA_EXECUTOR=docker  # Lambda executa em contêiner Docker
+      - SERVICES=s3,lambda  # Ativa apenas os serviços S3 e Lambda
+      - AWS_REGION=sa-east-1  # Região padrão da AWS
+    volumes:
+      - "D:/dev/docker/localstack_data:/var/lib/localstack"  # Persistência de dados local no Windows
+      - "./localstack:/etc/localstack/init/ready.d"
