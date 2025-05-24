@@ -1,10 +1,17 @@
-name: Deploy with Terraform
+name: Plan Infrastructure to PRD with Terraform
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
+defaults:
+  run:
+    working-directory: infra
+
+env:
+  TF_VAR_env: "prd"
+  
 jobs:
   terraform:
     name: Setup Terraform
@@ -23,11 +30,14 @@ jobs:
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
-      with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+        
+    - name: Terraform fmt
+      id: fmt
+      run: terraform fmt -check
+      continue-on-error: true
 
     - name: Terraform Init
       run: terraform init
 
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
+    - name: Terraform PLAN
+      run: terraform plan
