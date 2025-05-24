@@ -20,6 +20,9 @@ pip install -r "$REQUIREMENTS_FILE" -t "$BUILD_DIR"
 echo "📄 Copiando arquivos da aplicação para o diretório de build..."
 cp -r "$SOURCE_DIR"/* "$BUILD_DIR/"
 
+echo "📁 listando arquivos do $BUILD_DIR"
+ls -l "$BUILD_DIR"
+
 echo "✅ Build completo: $BUILD_DIR está pronto para uso no Terraform"
 
 # Copie outros diretórios necessários (modifique conforme seu projeto)
