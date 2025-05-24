@@ -18,7 +18,7 @@ echo "📦 Instalando dependências do requirements.txt..."
 pip install -r "$REQUIREMENTS_FILE" -t "$BUILD_DIR"
 
 echo "📄 Copiando arquivos da aplicação para o diretório de build..."
-cp -r "$SOURCE_DIR" "$BUILD_DIR/"
+cp -r "$SOURCE_DIR/*" "$BUILD_DIR/"
 
 echo "✅ Build completo: $BUILD_DIR está pronto para uso no Terraform"
 
