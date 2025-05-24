@@ -44,6 +44,6 @@ module "lambda" {
   ]
 }
 
-module "lambda" {
+module "apigw_deployment" {
   source = "git::https://github.com/DojoManagement/dojo-tf-modules.git//dojo-apigw-deployment?ref=dojo-apigw-deployment-0.0.1"
 }
