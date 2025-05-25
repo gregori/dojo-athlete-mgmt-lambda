@@ -3,4 +3,4 @@ duckdb~=1.2.1
 sqlalchemy~=2.0.39
 boto3~=1.37.18
 pydantic-settings~=2.8.1
-dojocommons~=1.0.0
+dojocommons~=1.0.1
