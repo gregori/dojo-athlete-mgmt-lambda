@@ -297,7 +297,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "dojocommons", specifier = "~=1.0.1" },
+    { name = "dojocommons", specifier = "~=1.0.2" },
     { name = "pydantic", specifier = "~=2.10.6" },
     { name = "pydantic-settings", specifier = "~=2.8.1" },
 ]
@@ -311,7 +311,7 @@ dev = [
 
 [[package]]
 name = "dojocommons"
-version = "1.0.1"
+version = "1.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "boto3" },
@@ -319,9 +319,9 @@ dependencies = [
     { name = "pydantic" },
     { name = "pydantic-settings" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/16/7e/0966c0005d8e5a885e5ec0dcc43e1d55e24c0543a5a5a86bf44a3e84da9b/dojocommons-1.0.1.tar.gz", hash = "sha256:0753d25f036eb39f85c5085d955cd2343d0fcea30143bb513f062a6a4c63c8d4", size = 8008, upload-time = "2025-05-24T22:56:28.215Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ab/88/346af40f3b7b84a837ba69237ab3d41cb3412f907b8f520a923b2b373455/dojocommons-1.0.2.tar.gz", hash = "sha256:07e67ea337081fbc982d03bb4eab17bf4b68a22ab31d99ee2dec42b86348951c", size = 8019, upload-time = "2025-05-25T21:03:19.94Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/62/9c/a8ca20d11af30d14ca4c7026bc6ab13879bce7e8e0093a9b2098add69b1c/dojocommons-1.0.1-py3-none-any.whl", hash = "sha256:1a2768bc91b9e8894d306caf8fcd45cff50724154924ac01016ae3216bb28f55", size = 11265, upload-time = "2025-05-24T22:56:26.99Z" },
+    { url = "https://files.pythonhosted.org/packages/3b/c6/906b7c8d44ae5f5ef756ed357a72e40d460453f7f923cc090c012bd6fe9e/dojocommons-1.0.2-py3-none-any.whl", hash = "sha256:b25c86d666b24920003b8c0ca74009272e95adcad4cc801b989636b556b486a0", size = 11264, upload-time = "2025-05-25T21:03:19.143Z" },
 ]
 
 [[package]]
