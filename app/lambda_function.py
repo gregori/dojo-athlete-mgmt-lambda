@@ -1,8 +1,7 @@
-from dojocommons.model.app_configuration import AppConfiguration
-
 from athletemgmt.controller.athlete_controller import AthleteController
 from athletemgmt.model.event import Event
 from athletemgmt.model.response import Response
+from dojocommons.model.app_configuration import AppConfiguration
 
 
 def lambda_handler(event, _):

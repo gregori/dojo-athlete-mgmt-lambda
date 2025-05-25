@@ -11,12 +11,14 @@ class Athlete(BaseModel):
     rg: str = Field(..., description="RG do atleta")
     email: Optional[str] = Field(..., description="Email do atleta")
     date_of_birth: date = Field(
-        ..., description="Data de nascimento do atleta"
+        ...,
+        description="Data de nascimento do atleta",
     )
     street: str = Field(..., description="Rua do atleta")
     number: int = Field(..., description="Número da casa do atleta")
     complement: Optional[str] = Field(
-        ..., description="Complemento do endereço"
+        ...,
+        description="Complemento do endereço",
     )
     neighborhood: str = Field(..., description="Bairro do atleta")
     city: str = Field(..., description="Cidade do atleta")
@@ -25,29 +27,37 @@ class Athlete(BaseModel):
     phone: Optional[str] = Field(..., description="Telefone de contato")
     cellphone: Optional[str] = Field(..., description="Celular de contato")
     father_name: Optional[str] = Field(
-        ..., description="Nome do pai do atleta"
+        ...,
+        description="Nome do pai do atleta",
     )
     mother_name: Optional[str] = Field(
-        ..., description="Nome da mãe do atleta"
+        ...,
+        description="Nome da mãe do atleta",
     )
     guardians_cpf: Optional[str] = Field(
-        ..., description="CPF do responsável legal"
+        ...,
+        description="CPF do responsável legal",
     )
     guardians_rg: Optional[str] = Field(
-        ..., description="RG do responsável legal"
+        ...,
+        description="RG do responsável legal",
     )
     subscription_date: date = Field(
-        ..., description="Data de inscrição do atleta"
+        ...,
+        description="Data de inscrição do atleta",
     )
     anaj_date: date = Field(
-        ..., description="Data de inscrição do atleta na ANAJ"
+        ...,
+        description="Data de inscrição do atleta na ANAJ",
     )
     blood_type: Optional[str] = Field(
-        ..., description="Tipo sanguíneo do atleta"
+        ...,
+        description="Tipo sanguíneo do atleta",
     )
     last_medical_exam: date = Field(
         ..., description="Data do último exame médico do atleta"
     )
     current_belt_id: int = Field(
-        ..., description="ID do atual faixa do atleta"
+        ...,
+        description="ID do atual faixa do atleta",
     )
