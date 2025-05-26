@@ -34,6 +34,8 @@ cd "$BUILD_DIR"
 zip -r9 "../$ZIP_FILE" . > /dev/null
 cd ..
 
+ls -l "$ZIP_FILE"
+
 echo "✅ Build completo: $BUILD_DIR está pronto para uso no Terraform"
 
 #echo "✅ Build completo: $ZIP_FILE está pronto para uso no Terraform"
