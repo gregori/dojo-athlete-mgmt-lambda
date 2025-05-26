@@ -23,7 +23,7 @@ module "lambda" {
   routes = [
     {
       method    = "POST"
-      path_part = "register"
+      path_part = "checkin"
     },
     {
       method    = "POST"
@@ -39,7 +39,11 @@ module "lambda" {
     },
     {
       method    = "POST"
-      path_part = "checkin"
+      path_part = "athletes"
+    },
+    {
+      method    = "POST"
+      path_part = "/athletes/{id}"
     }
   ]
 }
