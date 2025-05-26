@@ -11,7 +11,7 @@ terraform {
 }
 
 module "lambda" {
-  source = "git::https://github.com/DojoManagement/dojo-tf-modules.git//dojo-lambda?ref=dojo-lambda-0.0.3"
+  source = "git::https://github.com/DojoManagement/dojo-tf-modules.git//dojo-lambda?ref=fix-to-use-s3-to-lambda-deploy"
 
   lambda_name     = "dojo-athlete-mgmt" #####
   source_dir      = "../lambda_build"
