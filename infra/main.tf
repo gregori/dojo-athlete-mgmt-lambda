@@ -11,7 +11,7 @@ terraform {
 }
 
 module "lambda" {
-  source = "git::https://github.com/DojoManagement/dojo-tf-modules.git//dojo-lambda?ref=dojo-lambda-0.0.2"
+  source = "git::https://github.com/DojoManagement/dojo-tf-modules.git//dojo-lambda?ref=fix-aws_lambda_permission"
 
   lambda_name     = "dojo-athlete-mgmt" #####
   source_dir      = "../lambda_build"
