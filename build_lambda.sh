@@ -23,16 +23,19 @@ cp -r "$SOURCE_DIR"/* "$BUILD_DIR/"
 echo "📁 listando arquivos do $BUILD_DIR"
 ls -l "$BUILD_DIR"
 
-echo "✅ Build completo: $BUILD_DIR está pronto para uso no Terraform"
 
 # Copie outros diretórios necessários (modifique conforme seu projeto)
 #if [ -d "$SOURCE_DIR/athletemgmt" ]; then
 #  cp -r "$SOURCE_DIR/dojocommons" "$BUILD_DIR/"
 #fi
 
-#echo "🗜️ Criando o pacote .zip: $ZIP_FILE"
-#cd "$BUILD_DIR"
-#zip -r "../$ZIP_FILE" .
-#cd ..
+echo "🗜️ Criando o pacote .zip: $ZIP_FILE"
+cd "$BUILD_DIR"
+zip -r9 "../$ZIP_FILE" . > /dev/null
+cd ..
+
+ls -l "$ZIP_FILE"
+
+echo "✅ Build completo: $BUILD_DIR está pronto para uso no Terraform"
 
 #echo "✅ Build completo: $ZIP_FILE está pronto para uso no Terraform"
