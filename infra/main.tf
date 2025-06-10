@@ -25,10 +25,6 @@ module "lambda" {
     {
       method    = "POST"
       path_part = "athletes"
-    },
-    {
-      method    = "POST"
-      path_part = "/athletes/{id}"
     }
   ]
 }
