@@ -19,7 +19,7 @@ module "lambda" {
   runtime_version = "python3.12"
   access_s3       = true
   env             = "stg"
-  app_version     = "v0.0.1"
+  app_version     = "v0.0.2"
   
   routes = [
     {
