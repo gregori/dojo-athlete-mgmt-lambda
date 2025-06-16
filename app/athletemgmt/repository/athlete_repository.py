@@ -3,7 +3,6 @@ from dojocommons.repository.base_repository import BaseRepository
 
 from athletemgmt.model.athlete import Athlete
 
-
 class AthleteRepository(BaseRepository[Athlete]):
     def __init__(self, cfg: AppConfiguration):
         super().__init__(cfg, Athlete, "athletes")
