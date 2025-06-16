@@ -3,7 +3,6 @@ from athletemgmt.model.event import Event
 from athletemgmt.model.response import Response
 from dojocommons.model.app_configuration import AppConfiguration
 
-
 def lambda_handler(event, _):
     try:
         event_obj = Event.model_validate(event)
