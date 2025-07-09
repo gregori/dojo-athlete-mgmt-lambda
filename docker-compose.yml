@@ -1,0 +1,19 @@
+
+services:
+  localstack-lambda:
+    image: localstack/localstack:latest
+    container_name: localstack-lambda-athlete
+    ports:
+      - "4566:4566"
+      - "4571:4571"
+    environment:
+      - SERVICES=lambda,s3
+      - DEBUG=1
+      - LAMBDA_EXECUTOR=docker-reuse
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+    volumes:
+      - /d/dojo-athlete-mgmt-lambda/init-scripts:/etc/localstack/init/ready.d  # Caminho em estilo Windows
+      - //var/run/docker.sock:/var/run/docker.sock  # Ainda necessário para execução Lambdaversion: "3.8"
+      - /d/dojo-athlete-mgmt-lambda/app:/tmp/code  # <-- Adicione esta linha

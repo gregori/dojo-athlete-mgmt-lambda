@@ -1,0 +1,9 @@
+{
+  "resource": "/athletes",
+  "httpMethod": "POST",
+  "headers": { "Content-Type": "application/json" },
+  "queryStringParameters": null,
+  "pathParameters": null,
+  "body": "{\"id\": \"1\", \"name\": \"Henrique\", \"cpf\": \"12345678901\", \"rg\": \"0000000\", \"email\": \"henriquewalves@gmail.com\", \"date_of_birth\": \"1994-08-18\", \"street\": \"Rua das Flores\", \"number\": \"123\", \"neighborhood\": \"Jardim das Rosas\", \"city\": \"São Paulo\", \"state\": \"SP\", \"zip_code\": \"01234-567\", \"cellphone\": \"11987654321\", \"subscription_date\": \"2018-03-18\", \"anaj_date\": \"2023-10-01\", \"last_medical_exam\": \"2024-09-15\", \"current_belt_id\": \"1\",\"complement\": \"\",\"phone\": \"\",\"father_name\": \"\",\"mother_name\": \"\",\"guardians_cpf\": \"\",\"guardians_rg\": \"\",\"blood_type\": \"\"}",
+  "isBase64Encoded": false
+}

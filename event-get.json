@@ -1,0 +1,8 @@
+{
+  "resource": "/athletes",
+  "httpMethod": "GET",
+  "headers": { "Content-Type": "application/json" },
+  "queryStringParameters": null,
+  "pathParameters": null,
+  "isBase64Encoded": false
+}
