@@ -25,6 +25,10 @@ module "lambda" {
     {
       method    = "POST"
       path_part = "athletes"
+    },
+    {
+      method = "GET"
+      path_part = "athletes"  
     }
   ]
 }
