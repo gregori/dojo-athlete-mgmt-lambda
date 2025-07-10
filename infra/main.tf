@@ -10,6 +10,11 @@ terraform {
   }
 }
 
+variable "redeploy_token" {
+  type    = string
+  default = ""
+}
+
 module "lambda" {
   source = "git::https://github.com/DojoManagement/dojo-tf-modules.git//dojo-lambda?ref=fix--create-one-api-gw-resource-by-path_part"
 
