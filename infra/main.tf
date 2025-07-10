@@ -11,7 +11,7 @@ terraform {
 }
 
 module "lambda" {
-  source = "git::https://github.com/DojoManagement/dojo-tf-modules.git//dojo-lambda?ref=add-s3-variables"
+  source = "git::https://github.com/DojoManagement/dojo-tf-modules.git//dojo-lambda?ref=fix--create-one-api-gw-resource-by-path_part"
 
   lambda_name     = "dojo-athlete-mgmt"
   source_dir      = "../lambda_build"
@@ -21,16 +21,9 @@ module "lambda" {
   env             = "stg"
   app_version     = "v0.0.1"
   
-  routes = [
-    {
-      method    = "POST"
-      path_part = "athletes"
-    },
-    {
-      method = "GET"
-      path_part = "athletes"  
-    }
-  ]
+  routes = {
+    athletes = ["POST", "GET"]
+  }
 }
 
 module "apigw_deployment" {
