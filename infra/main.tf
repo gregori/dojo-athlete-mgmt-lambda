@@ -21,16 +21,9 @@ module "lambda" {
   env             = "stg"
   app_version     = "v0.0.1"
   
-  routes = [
-    {
-      method    = "POST"
-      path_part = "athletes"
-    },
-    {
-      method = "GET"
-      path_part = "athletes"  
-    }
-  ]
+  routes = {
+    athletes = ["POST, GET"]
+  }
 }
 
 module "apigw_deployment" {
