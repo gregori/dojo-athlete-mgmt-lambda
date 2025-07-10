@@ -60,7 +60,7 @@ jobs:
       working-directory: infra
 
     - name: Terraform PLAN
-      run: terraform plan  -var="redeploy_token=${{ env.REDEPLOY_TOKEN }}"
+      run: terraform plan
       working-directory: infra
       env:
         REDEPLOY_TOKEN: ${{ env.REDEPLOY_TOKEN }} 
