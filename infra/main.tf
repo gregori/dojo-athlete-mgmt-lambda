@@ -28,5 +28,5 @@ module "lambda" {
 
 
 module "apigw_deployment" {
-  source = "git::https://github.com/DojoManagement/dojo-tf-modules.git//dojo-apigw-deployment?ref=dojo-apigw-deployment-0.0.1"
+  source = "git::https://github.com/DojoManagement/dojo-tf-modules.git//dojo-apigw-deployment?ref=fix--create-one-api-gw-resource-by-path_part"
 }
