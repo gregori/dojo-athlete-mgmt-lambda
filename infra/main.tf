@@ -22,7 +22,7 @@ module "lambda" {
   app_version     = "v0.0.1"
   
   routes = {
-    athletes = ["POST, GET"]
+    athletes = ["POST", "GET"]
   }
 }
 
