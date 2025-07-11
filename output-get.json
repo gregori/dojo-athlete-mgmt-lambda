@@ -1,0 +1,1 @@
+{"statusCode": 400, "body": "1 validation error for Event\n  Value error, Par\u00e2metro 'id' \u00e9 obrigat\u00f3rio para as opera\u00e7\u00f5es GET, PUT e DELETE. [type=value_error, input_value={'resource': '/athletes',...isBase64Encoded': False}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.10/v/value_error"}

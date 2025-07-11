@@ -4,5 +4,6 @@
   "headers": { "Content-Type": "application/json" },
   "queryStringParameters": null,
   "pathParameters": null,
+  "body": null,
   "isBase64Encoded": false
 }

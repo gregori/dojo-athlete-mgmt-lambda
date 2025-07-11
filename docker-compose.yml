@@ -1,4 +1,3 @@
-
 services:
   localstack-lambda:
     image: localstack/localstack:latest
@@ -10,10 +9,15 @@ services:
       - SERVICES=lambda,s3
       - DEBUG=1
       - LAMBDA_EXECUTOR=docker-reuse
-      - AWS_DEFAULT_REGION=us-east-1
-      - AWS_ACCESS_KEY_ID=test
-      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_DEFAULT_REGION=${AWS_REGION}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - S3_BUCKET=${S3_BUCKET}
+      - S3_PATH=${S3_PATH}
+      - APP_NAME=${APP_NAME}
+      - APP_VERSION=${APP_VERSION}
+      - AWS_ENDPOINT=${AWS_ENDPOINT}
     volumes:
-      - /d/dojo-athlete-mgmt-lambda/init-scripts:/etc/localstack/init/ready.d  # Caminho em estilo Windows
-      - //var/run/docker.sock:/var/run/docker.sock  # Ainda necessário para execução Lambdaversion: "3.8"
-      - /d/dojo-athlete-mgmt-lambda/app:/tmp/code  # <-- Adicione esta linha
+      - /d/dojo-athlete-mgmt-lambda/init-scripts:/etc/localstack/init/ready.d
+      - //var/run/docker.sock:/var/run/docker.sock
+      - /d/dojo-athlete-mgmt-lambda/app:/tmp/code
