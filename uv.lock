@@ -280,7 +280,7 @@ wheels = [
 
 [[package]]
 name = "dojo-athlete-mgmt-lambda"
-version = "0.1.0"
+version = "0.2.0"
 source = { virtual = "." }
 dependencies = [
     { name = "dojocommons" },
@@ -297,7 +297,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "dojocommons", specifier = "~=1.1.0" },
+    { name = "dojocommons", specifier = "~=1.1.2" },
     { name = "pydantic", specifier = "~=2.10.6" },
     { name = "pydantic-settings", specifier = "~=2.8.1" },
 ]
@@ -311,7 +311,7 @@ dev = [
 
 [[package]]
 name = "dojocommons"
-version = "1.1.0"
+version = "1.1.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "boto3" },
@@ -319,9 +319,9 @@ dependencies = [
     { name = "pydantic" },
     { name = "pydantic-settings" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/5c/e1/af7282adeefa57f886c5ada5b3b180583e3373e1a0721f4b1c9c788f147e/dojocommons-1.1.0.tar.gz", hash = "sha256:edbb1c420e9eb703a097325220c6f08c36b7bad00c4a8c8ae22757662871e45d", size = 8866, upload-time = "2025-07-08T00:42:50.525Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/fc/5d/418b16795e75a99711c2b0f60dc7071e8d706e9cb1bdcceb5a5ac8036034/dojocommons-1.1.2.tar.gz", hash = "sha256:c7f7470c2d60029659b8676e6c76849073112927f99cc0d46c5fbb70ed4d53e5", size = 9015, upload-time = "2025-07-10T03:11:26.769Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/67/aa/d511739c2b6b3a00c26f6cb388c1395650f55195e993e7f93f6866b126ca/dojocommons-1.1.0-py3-none-any.whl", hash = "sha256:7c2289a74a160988707c00d792d2f16cbbb68d210b96960c9d7b92e8bc5b824c", size = 12452, upload-time = "2025-07-08T00:42:49.433Z" },
+    { url = "https://files.pythonhosted.org/packages/2b/14/926075cdce0d92ba97052e20ec2a9c3d6f85817b17d765f02847e99c4858/dojocommons-1.1.2-py3-none-any.whl", hash = "sha256:478a9ad5e14677ab88fa448ea3d4b7e30b090f7d3ce884711306ecdf6ae162fb", size = 12682, upload-time = "2025-07-10T03:11:25.702Z" },
 ]
 
 [[package]]
