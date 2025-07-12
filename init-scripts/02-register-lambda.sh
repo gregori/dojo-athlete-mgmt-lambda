@@ -27,4 +27,5 @@ awslocal lambda create-function \
   --handler lambda_function.lambda_handler \
   --role arn:aws:iam::000000000000:role/lambda-role \
   --zip-file fileb:///tmp/lambda_function.zip \
-  --timeout 30
+  --timeout 30 \
+  --environment "Variables={APP_NAME=${APP_NAME},APP_VERSION=${APP_VERSION},S3_BUCKET=${S3_BUCKET},S3_PATH=${S3_PATH},AWS_REGION=${AWS_REGION},AWS_ENDPOINT=${AWS_ENDPOINT},HOME=/tmp}"

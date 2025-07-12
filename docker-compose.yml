@@ -6,7 +6,7 @@ services:
       - "4566:4566"
       - "4571:4571"
     environment:
-      - SERVICES=lambda,s3
+      - SERVICES=lambda,s3,apigateway
       - DEBUG=1
       - LAMBDA_EXECUTOR=docker-reuse
       - AWS_DEFAULT_REGION=${AWS_REGION}
@@ -17,6 +17,7 @@ services:
       - APP_NAME=${APP_NAME}
       - APP_VERSION=${APP_VERSION}
       - AWS_ENDPOINT=${AWS_ENDPOINT}
+      - HOME=/tmp
     volumes:
       - /d/dojo-athlete-mgmt-lambda/init-scripts:/etc/localstack/init/ready.d
       - //var/run/docker.sock:/var/run/docker.sock
