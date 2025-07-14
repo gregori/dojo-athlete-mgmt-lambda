@@ -28,7 +28,7 @@ module "lambda" {
   
   routes = {
     athletes        = ["POST", "GET"]
-    "athletes/{id}" = ["GET", "PUT", "DELETE"]
+#    "athletes/{id}" = ["GET", "PUT", "DELETE"]
   }
 }
 
