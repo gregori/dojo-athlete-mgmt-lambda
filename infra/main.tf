@@ -27,8 +27,12 @@ module "lambda" {
   app_version     = "v0.0.1"
   
   routes = {
-    athletes        = ["POST", "GET"]
-#    "athletes/{id}" = ["GET", "PUT", "DELETE"]
+    parents = {
+      athletes = ["POST", "GET"]
+    },
+    children = {
+      "athletes/{id}" = ["GET", "PUT", "DELETE"]
+    }
   }
 }
 
