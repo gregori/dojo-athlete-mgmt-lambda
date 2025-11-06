@@ -4,4 +4,4 @@ from athletemgmt.model.resource import Resource
 
 
 class Event(BaseEvent):
-    resource: Resource
+    resource: str
