@@ -2,7 +2,7 @@ from athletemgmt.controller.athlete_controller import AthleteController
 from athletemgmt.model.event import Event
 from athletemgmt.model.response import Response
 from dojocommons.model.app_configuration import AppConfiguration
-from test.build.pydantic.deprecated import json
+import json
 
 def lambda_handler(event, _):
     print("[DEBUG][Lambda] Evento recebido:", json.dumps(event))
