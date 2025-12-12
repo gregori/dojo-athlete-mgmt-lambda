@@ -4,8 +4,7 @@ from typing import Optional
 from pydantic import BaseModel, Field
 
 
-class Athlete(BaseModel):
-    id: int = Field(..., description="Identificador único do atleta")
+class AthleteBase(BaseModel):
     name: str = Field(..., description="Nome completo do atleta")
     cpf: str = Field(..., description="CPF do atleta")
     rg: str = Field(..., description="RG do atleta")
@@ -61,3 +60,19 @@ class Athlete(BaseModel):
         ...,
         description="ID do atual faixa do atleta",
     )
+
+class AthleteCreate(AthleteBase):
+    """
+    ✅ Modelo para criação (sem ID - será gerado automaticamente)
+    """
+    pass
+
+
+class Athlete(AthleteBase):
+    """
+    Modelo completo com ID (usado para leitura e atualização)
+    """
+    id: Optional[int] = Field(None, description="ID único (gerado automaticamente)")
+
+    class Config:
+        from_attributes = True
