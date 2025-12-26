@@ -9,16 +9,18 @@ ZIP_FILE="lambda_package.zip"
 REQUIREMENTS_FILE="$SOURCE_DIR/requirements.txt"
 
 echo "🔧 Limpando build anterior..."
-rm -rf "$BUILD_DIR" "$ZIP_FILE"
+sudo rm -rf "$BUILD_DIR" "$ZIP_FILE"
 
 echo "📁 Criando diretório de build: $BUILD_DIR"
-mkdir -p "$BUILD_DIR"
+sudo mkdir -p "$BUILD_DIR"
 
 echo "📦 Instalando dependências do requirements.txt..."
-pip install -r "$REQUIREMENTS_FILE" -t "$BUILD_DIR"
+sudo pip install -r "$REQUIREMENTS_FILE" -t "$BUILD_DIR"
 
 echo "📄 Copiando arquivos da aplicação para o diretório de build..."
-cp -r "$SOURCE_DIR"/* "$BUILD_DIR/"
+sudo cp -r "$SOURCE_DIR"/* "$BUILD_DIR/"
+
+sudo cp -r ../dojo-commons/dojocommons "$BUILD_DIR/"
 
 echo "📁 listando arquivos do $BUILD_DIR"
 ls -l "$BUILD_DIR"
@@ -31,11 +33,12 @@ ls -l "$BUILD_DIR"
 
 echo "🗜️ Criando o pacote .zip: $ZIP_FILE"
 cd "$BUILD_DIR"
-zip -r9 "../$ZIP_FILE" . > /dev/null
+sudo zip -r9 "../$ZIP_FILE" . > /dev/null
 cd ..
+sudo chmod 777 "$ZIP_FILE"
+
+sudo rm -rf "$BUILD_DIR"
 
 ls -l "$ZIP_FILE"
 
-echo "✅ Build completo: $BUILD_DIR está pronto para uso no Terraform"
-
-#echo "✅ Build completo: $ZIP_FILE está pronto para uso no Terraform"
+echo "✅ Build completo: $ZIP_FILE está pronto para uso no Terraform"

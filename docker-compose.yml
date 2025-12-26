@@ -1,6 +1,6 @@
 services:
-  localstack-lambda:
-    image: localstack/localstack:latest
+  localstack-lambda-athlete:
+    image: meu-localstack
     container_name: localstack-lambda-athlete
     ports:
       - "4566:4566"
@@ -19,6 +19,7 @@ services:
       - AWS_ENDPOINT=${AWS_ENDPOINT}
       - HOME=/tmp
     volumes:
-      - /d/dojo-athlete-mgmt-lambda/init-scripts:/etc/localstack/init/ready.d
+      - ./init-scripts:/etc/localstack/init/ready.d
       - //var/run/docker.sock:/var/run/docker.sock
-      - /d/dojo-athlete-mgmt-lambda/app:/tmp/code
+      - ./lambda_package.zip:/tmp/code/lambda_package.zip
+      - ./athletes.parquet:/tmp/code/athletes.parquet
