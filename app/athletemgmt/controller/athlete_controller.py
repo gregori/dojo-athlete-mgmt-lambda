@@ -8,4 +8,4 @@ from athletemgmt.service.athlete_service import AthleteService
 
 class AthleteController(BaseController[Athlete]):
     def __init__(self, cfg: AppConfiguration):
-        super().__init__(cfg, AthleteService, Resource, Athlete)
+        super().__init__(cfg, AthleteService,  Resource.ATTENDANCES.value, Athlete)
