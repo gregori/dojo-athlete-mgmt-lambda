@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field
 
 
 class Athlete(BaseModel):
-    id: int = Field(..., description="Identificador único do atleta")
+    id: str = Field(default="", description="UUID único do atleta (gerado automaticamente)")
     name: str = Field(..., description="Nome completo do atleta")
     cpf: str = Field(..., description="CPF do atleta")
     rg: str = Field(..., description="RG do atleta")
